@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
+use Mail;
+use App\Mail\JobApplicationEmail;
 
 class HomeController extends Controller
 {
@@ -46,6 +48,15 @@ class HomeController extends Controller
         // Save profile with user relationship
         $user->profile()->save($profile);
 
+        //send the email
+        Mail::to('dwaichari@gmail.com')
+        ->cc('cc@example.com') 
+        ->send(new JobApplicationEmail(
+        $user->full_name, 
+        $user->profile->age,
+        $user->profile->years_of_experience,
+        $user->profile->phone_number,
+    ));
         // Redirect to success page
         return redirect('/success');  
     }
