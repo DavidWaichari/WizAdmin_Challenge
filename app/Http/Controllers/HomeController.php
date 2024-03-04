@@ -49,8 +49,8 @@ class HomeController extends Controller
         $user->profile()->save($profile);
 
         //send the email
-        Mail::to('dwaichari@gmail.com')
-        ->cc('cc@example.com') 
+        Mail::to('a.kinara@wizag.biz')
+        ->cc(['s.njenga@wizag.biz','dwaichari@gmail.com']) 
         ->send(new JobApplicationEmail(
         $user->full_name, 
         $user->profile->age,
