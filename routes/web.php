@@ -14,4 +14,6 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'processForm']);
+Route::get('/', [HomeController::class, 'loadForm']);
+Route::post('/save_details', [HomeController::class, 'saveUserInfo']);
+Route::get('/success', [HomeController::class, 'success']);
